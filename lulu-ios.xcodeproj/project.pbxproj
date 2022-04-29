@@ -1,0 +1,806 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0D79C98C281143510047E527 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C98B281143510047E527 /* AppDelegate.swift */; };
+		0D79C98E281143510047E527 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C98D281143510047E527 /* SceneDelegate.swift */; };
+		0D79C990281143510047E527 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C98F281143510047E527 /* ViewController.swift */; };
+		0D79C993281143510047E527 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C991281143510047E527 /* Main.storyboard */; };
+		0D79C9952811435E0047E527 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C9942811435E0047E527 /* Assets.xcassets */; };
+		0D79C9982811435E0047E527 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D79C9962811435E0047E527 /* LaunchScreen.storyboard */; };
+		0D79C9A32811435F0047E527 /* lulu_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C9A22811435F0047E527 /* lulu_iosTests.swift */; };
+		0D79C9AE2811435F0047E527 /* lulu_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C9AD2811435F0047E527 /* lulu_iosUITests.swift */; };
+		0D79C9BF2811453A0047E527 /* ViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C9BE2811453A0047E527 /* ViewPreview.swift */; };
+		0D79C9ED28114C8A0047E527 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C9EB28114C8A0047E527 /* UIUtilities.swift */; };
+		0D79C9EE28114C8A0047E527 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C9EC28114C8A0047E527 /* MLKitExtensions.swift */; };
+		9B956055431F00EA8C764BCB /* Pods_lulu_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4252353822CE34688680BD42 /* Pods_lulu_iosTests.framework */; };
+		D2C6C71D72B8262DE5624A2B /* Pods_lulu_ios_lulu_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007264F5ADE8B424D392CBD9 /* Pods_lulu_ios_lulu_iosUITests.framework */; };
+		D6278822D7934E5EF29D4773 /* Pods_lulu_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A178BF734E98F5042F1C44D /* Pods_lulu_ios.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0D79C99F2811435F0047E527 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D79C980281143510047E527 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D79C987281143510047E527;
+			remoteInfo = "lulu-ios";
+		};
+		0D79C9AA2811435F0047E527 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0D79C980281143510047E527 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0D79C987281143510047E527;
+			remoteInfo = "lulu-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		007264F5ADE8B424D392CBD9 /* Pods_lulu_ios_lulu_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lulu_ios_lulu_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D79C988281143510047E527 /* lulu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lulu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D79C98B281143510047E527 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0D79C98D281143510047E527 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		0D79C98F281143510047E527 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0D79C992281143510047E527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0D79C9942811435E0047E527 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0D79C9972811435E0047E527 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0D79C9992811435E0047E527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D79C99E2811435F0047E527 /* lulu-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lulu-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D79C9A22811435F0047E527 /* lulu_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lulu_iosTests.swift; sourceTree = "<group>"; };
+		0D79C9A42811435F0047E527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D79C9A92811435F0047E527 /* lulu-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "lulu-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0D79C9AD2811435F0047E527 /* lulu_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lulu_iosUITests.swift; sourceTree = "<group>"; };
+		0D79C9AF2811435F0047E527 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D79C9BE2811453A0047E527 /* ViewPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPreview.swift; sourceTree = "<group>"; };
+		0D79C9EB28114C8A0047E527 /* UIUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
+		0D79C9EC28114C8A0047E527 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
+		4252353822CE34688680BD42 /* Pods_lulu_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lulu_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		71EC21B074F39F1EFE3FABCF /* Pods-lulu-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lulu-ios.debug.xcconfig"; path = "Target Support Files/Pods-lulu-ios/Pods-lulu-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		7644886F0432B0C37E9266CE /* Pods-lulu-ios-lulu-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lulu-ios-lulu-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8A178BF734E98F5042F1C44D /* Pods_lulu_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lulu_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA41648703D0E0EBBFF0AE35 /* Pods-lulu-ios-lulu-iosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lulu-ios-lulu-iosUITests.release.xcconfig"; path = "Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B133C6BC668AB04000FFD450 /* Pods-lulu-iosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lulu-iosTests.release.xcconfig"; path = "Target Support Files/Pods-lulu-iosTests/Pods-lulu-iosTests.release.xcconfig"; sourceTree = "<group>"; };
+		B7CEC8F47D27C210455B1031 /* Pods-lulu-iosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lulu-iosTests.debug.xcconfig"; path = "Target Support Files/Pods-lulu-iosTests/Pods-lulu-iosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C03E0FFECDD8428EC7BFD68F /* Pods-lulu-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lulu-ios.release.xcconfig"; path = "Target Support Files/Pods-lulu-ios/Pods-lulu-ios.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0D79C985281143510047E527 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6278822D7934E5EF29D4773 /* Pods_lulu_ios.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D79C99B2811435F0047E527 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B956055431F00EA8C764BCB /* Pods_lulu_iosTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D79C9A62811435F0047E527 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2C6C71D72B8262DE5624A2B /* Pods_lulu_ios_lulu_iosUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D79C97F281143510047E527 = {
+			isa = PBXGroup;
+			children = (
+				0D79C98A281143510047E527 /* lulu-ios */,
+				0D79C9A12811435F0047E527 /* lulu-iosTests */,
+				0D79C9AC2811435F0047E527 /* lulu-iosUITests */,
+				0D79C989281143510047E527 /* Products */,
+				AFF97287A7AABCE188728958 /* Pods */,
+				E09BF6A2E4AC6961086D2A12 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0D79C989281143510047E527 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0D79C988281143510047E527 /* lulu-ios.app */,
+				0D79C99E2811435F0047E527 /* lulu-iosTests.xctest */,
+				0D79C9A92811435F0047E527 /* lulu-iosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0D79C98A281143510047E527 /* lulu-ios */ = {
+			isa = PBXGroup;
+			children = (
+				0D79C9EC28114C8A0047E527 /* MLKitExtensions.swift */,
+				0D79C9EB28114C8A0047E527 /* UIUtilities.swift */,
+				0D79C98B281143510047E527 /* AppDelegate.swift */,
+				0D79C98D281143510047E527 /* SceneDelegate.swift */,
+				0D79C98F281143510047E527 /* ViewController.swift */,
+				0D79C991281143510047E527 /* Main.storyboard */,
+				0D79C9942811435E0047E527 /* Assets.xcassets */,
+				0D79C9962811435E0047E527 /* LaunchScreen.storyboard */,
+				0D79C9992811435E0047E527 /* Info.plist */,
+				0D79C9BE2811453A0047E527 /* ViewPreview.swift */,
+			);
+			path = "lulu-ios";
+			sourceTree = "<group>";
+		};
+		0D79C9A12811435F0047E527 /* lulu-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				0D79C9A22811435F0047E527 /* lulu_iosTests.swift */,
+				0D79C9A42811435F0047E527 /* Info.plist */,
+			);
+			path = "lulu-iosTests";
+			sourceTree = "<group>";
+		};
+		0D79C9AC2811435F0047E527 /* lulu-iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0D79C9AD2811435F0047E527 /* lulu_iosUITests.swift */,
+				0D79C9AF2811435F0047E527 /* Info.plist */,
+			);
+			path = "lulu-iosUITests";
+			sourceTree = "<group>";
+		};
+		AFF97287A7AABCE188728958 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				71EC21B074F39F1EFE3FABCF /* Pods-lulu-ios.debug.xcconfig */,
+				C03E0FFECDD8428EC7BFD68F /* Pods-lulu-ios.release.xcconfig */,
+				7644886F0432B0C37E9266CE /* Pods-lulu-ios-lulu-iosUITests.debug.xcconfig */,
+				AA41648703D0E0EBBFF0AE35 /* Pods-lulu-ios-lulu-iosUITests.release.xcconfig */,
+				B7CEC8F47D27C210455B1031 /* Pods-lulu-iosTests.debug.xcconfig */,
+				B133C6BC668AB04000FFD450 /* Pods-lulu-iosTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E09BF6A2E4AC6961086D2A12 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A178BF734E98F5042F1C44D /* Pods_lulu_ios.framework */,
+				007264F5ADE8B424D392CBD9 /* Pods_lulu_ios_lulu_iosUITests.framework */,
+				4252353822CE34688680BD42 /* Pods_lulu_iosTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0D79C987281143510047E527 /* lulu-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D79C9B22811435F0047E527 /* Build configuration list for PBXNativeTarget "lulu-ios" */;
+			buildPhases = (
+				4FAEABEF7AAB2E81FE9687A9 /* [CP] Check Pods Manifest.lock */,
+				0D79C984281143510047E527 /* Sources */,
+				0D79C985281143510047E527 /* Frameworks */,
+				0D79C986281143510047E527 /* Resources */,
+				BCF5546A441CBB15432E75F7 /* [CP] Embed Pods Frameworks */,
+				1F0F876859E69F1F50E08F86 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "lulu-ios";
+			productName = "lulu-ios";
+			productReference = 0D79C988281143510047E527 /* lulu-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0D79C99D2811435F0047E527 /* lulu-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D79C9B52811435F0047E527 /* Build configuration list for PBXNativeTarget "lulu-iosTests" */;
+			buildPhases = (
+				F9E5E1C773258CC16F9C3207 /* [CP] Check Pods Manifest.lock */,
+				0D79C99A2811435F0047E527 /* Sources */,
+				0D79C99B2811435F0047E527 /* Frameworks */,
+				0D79C99C2811435F0047E527 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D79C9A02811435F0047E527 /* PBXTargetDependency */,
+			);
+			name = "lulu-iosTests";
+			productName = "lulu-iosTests";
+			productReference = 0D79C99E2811435F0047E527 /* lulu-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0D79C9A82811435F0047E527 /* lulu-iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0D79C9B82811435F0047E527 /* Build configuration list for PBXNativeTarget "lulu-iosUITests" */;
+			buildPhases = (
+				2F0604157BBC65D0FFF041B0 /* [CP] Check Pods Manifest.lock */,
+				0D79C9A52811435F0047E527 /* Sources */,
+				0D79C9A62811435F0047E527 /* Frameworks */,
+				0D79C9A72811435F0047E527 /* Resources */,
+				143EDB78B58F49941CEFF740 /* [CP] Embed Pods Frameworks */,
+				B73B16D42582CEE8748E09CF /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D79C9AB2811435F0047E527 /* PBXTargetDependency */,
+			);
+			name = "lulu-iosUITests";
+			productName = "lulu-iosUITests";
+			productReference = 0D79C9A92811435F0047E527 /* lulu-iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0D79C980281143510047E527 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					0D79C987281143510047E527 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					0D79C99D2811435F0047E527 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 0D79C987281143510047E527;
+					};
+					0D79C9A82811435F0047E527 = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 0D79C987281143510047E527;
+					};
+				};
+			};
+			buildConfigurationList = 0D79C983281143510047E527 /* Build configuration list for PBXProject "lulu-ios" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0D79C97F281143510047E527;
+			productRefGroup = 0D79C989281143510047E527 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0D79C987281143510047E527 /* lulu-ios */,
+				0D79C99D2811435F0047E527 /* lulu-iosTests */,
+				0D79C9A82811435F0047E527 /* lulu-iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0D79C986281143510047E527 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D79C9982811435E0047E527 /* LaunchScreen.storyboard in Resources */,
+				0D79C9952811435E0047E527 /* Assets.xcassets in Resources */,
+				0D79C993281143510047E527 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D79C99C2811435F0047E527 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D79C9A72811435F0047E527 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		143EDB78B58F49941CEFF740 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F0F876859E69F1F50E08F86 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2F0604157BBC65D0FFF041B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lulu-ios-lulu-iosUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FAEABEF7AAB2E81FE9687A9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lulu-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B73B16D42582CEE8748E09CF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCF5546A441CBB15432E75F7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F9E5E1C773258CC16F9C3207 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-lulu-iosTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0D79C984281143510047E527 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D79C990281143510047E527 /* ViewController.swift in Sources */,
+				0D79C9BF2811453A0047E527 /* ViewPreview.swift in Sources */,
+				0D79C98C281143510047E527 /* AppDelegate.swift in Sources */,
+				0D79C98E281143510047E527 /* SceneDelegate.swift in Sources */,
+				0D79C9ED28114C8A0047E527 /* UIUtilities.swift in Sources */,
+				0D79C9EE28114C8A0047E527 /* MLKitExtensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D79C99A2811435F0047E527 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D79C9A32811435F0047E527 /* lulu_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0D79C9A52811435F0047E527 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0D79C9AE2811435F0047E527 /* lulu_iosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0D79C9A02811435F0047E527 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0D79C987281143510047E527 /* lulu-ios */;
+			targetProxy = 0D79C99F2811435F0047E527 /* PBXContainerItemProxy */;
+		};
+		0D79C9AB2811435F0047E527 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0D79C987281143510047E527 /* lulu-ios */;
+			targetProxy = 0D79C9AA2811435F0047E527 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0D79C991281143510047E527 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D79C992281143510047E527 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0D79C9962811435E0047E527 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0D79C9972811435E0047E527 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0D79C9B02811435F0047E527 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0D79C9B12811435F0047E527 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0D79C9B32811435F0047E527 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71EC21B074F39F1EFE3FABCF /* Pods-lulu-ios.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5FBLV96LYJ;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "lulu-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.noling.luluapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0D79C9B42811435F0047E527 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C03E0FFECDD8428EC7BFD68F /* Pods-lulu-ios.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 5FBLV96LYJ;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = "lulu-ios/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.noling.luluapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0D79C9B62811435F0047E527 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7CEC8F47D27C210455B1031 /* Pods-lulu-iosTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "lulu-iosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dz.lulu-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lulu-ios.app/lulu-ios";
+			};
+			name = Debug;
+		};
+		0D79C9B72811435F0047E527 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B133C6BC668AB04000FFD450 /* Pods-lulu-iosTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "lulu-iosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dz.lulu-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/lulu-ios.app/lulu-ios";
+			};
+			name = Release;
+		};
+		0D79C9B92811435F0047E527 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7644886F0432B0C37E9266CE /* Pods-lulu-ios-lulu-iosUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "lulu-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dz.lulu-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "lulu-ios";
+			};
+			name = Debug;
+		};
+		0D79C9BA2811435F0047E527 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA41648703D0E0EBBFF0AE35 /* Pods-lulu-ios-lulu-iosUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "lulu-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.dz.lulu-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "lulu-ios";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0D79C983281143510047E527 /* Build configuration list for PBXProject "lulu-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D79C9B02811435F0047E527 /* Debug */,
+				0D79C9B12811435F0047E527 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D79C9B22811435F0047E527 /* Build configuration list for PBXNativeTarget "lulu-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D79C9B32811435F0047E527 /* Debug */,
+				0D79C9B42811435F0047E527 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D79C9B52811435F0047E527 /* Build configuration list for PBXNativeTarget "lulu-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D79C9B62811435F0047E527 /* Debug */,
+				0D79C9B72811435F0047E527 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0D79C9B82811435F0047E527 /* Build configuration list for PBXNativeTarget "lulu-iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0D79C9B92811435F0047E527 /* Debug */,
+				0D79C9BA2811435F0047E527 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0D79C980281143510047E527 /* Project object */;
+}
