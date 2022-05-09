@@ -26,6 +26,10 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         static let viewBorderWidth = 1.0
         static let viewSelectedBorderWidth = 2.0
         static let choosenCountFrames = 30
+        
+        static let noseKoefX = 1.5
+        static let noseKoefY = 3.5
+        static let irisKoef = 1.5
     }
     
     var dualVideoSession = AVCaptureMultiCamSession()
@@ -61,7 +65,6 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     var selectedViewId = 0
     var countFramesInView = 0
     var isFirstTime = true
-    
     var segmentIndex = 0
     
     //MARK:- View Life Cycle
@@ -97,8 +100,6 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     }
     
     func setupView() {
-        backPreview.layer.borderColor = UIColor.green.cgColor
-        backPreview.layer.borderWidth = 3.0
         let recWidth = backPreview.frame.width / CGFloat(Constant.viewsXCount)
         let recHeight = backPreview.frame.height / CGFloat(Constant.viewsYCount)
  
@@ -443,14 +444,19 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         isCalibrated = false
         startCalibrationButton.isEnabled = false
         startCalibrationButton.alpha = 0.4
+        lastPosition = CGPoint.zero
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             self.startCalibrationButton.isEnabled = true
             self.startCalibrationButton.alpha = 1.0
-            self.calibrationPosition = self.lastPosition
-            self.isCalibrated = true
-            self.faceDetectedLabel.text = "Calibrated"
-            self.circleView?.center = CGPoint(x: self.backPreview.bounds.maxX / 2, y: self.backPreview.bounds.maxY / 2)
-            self.circleView?.isHidden = false
+            if self.lastPosition == CGPoint.zero {
+                self.faceDetectedLabel.text = "Not calibrated"
+            } else {
+                self.calibrationPosition = self.lastPosition
+                self.isCalibrated = true
+                self.faceDetectedLabel.text = "Calibrated"
+                self.circleView?.center = CGPoint(x: self.backPreview.bounds.maxX / 2, y: self.backPreview.bounds.maxY / 2)
+                self.circleView?.isHidden = false
+            }
         }
     }
     
@@ -543,6 +549,7 @@ extension ViewController {
             return
         }
         weak var weakSelf = self
+        
         DispatchQueue.main.sync {
             guard let strongSelf = weakSelf else {
                 print("Self is nil!")
@@ -571,8 +578,8 @@ extension ViewController {
             if isFaceDetected && isCalibrated {
                 let deltaX = cgPoint.x - calibrationPosition.x
                 let deltaY = cgPoint.y - calibrationPosition.y
-                var newX = self.backPreview.bounds.maxX / 2 + deltaX*1.5
-                var newY = self.backPreview.bounds.maxY / 2 + deltaY*3.5
+                var newX = CGFloat(self.backPreview.bounds.maxX / 2) + deltaX * Constant.noseKoefX
+                var newY = CGFloat(self.backPreview.bounds.maxY / 2) + deltaY * Constant.noseKoefY
                 if newX < backPreview.bounds.minX + Constant.dotRadius / 2 {
                     newX = backPreview.bounds.minX + Constant.dotRadius / 2
                 } else if newX > backPreview.bounds.maxX - Constant.dotRadius / 2 {
@@ -597,10 +604,11 @@ extension ViewController {
         if isFaceDetected && isCalibrated {
             let deltaX = point.x - calibrationPosition.x
             let deltaY = point.y - calibrationPosition.y
+        
+            //print(deltaX, deltaY )
             DispatchQueue.main.async {
-                var newX = self.backPreview.bounds.maxX / 2 + deltaX*600
-                var newY = self.backPreview.bounds.maxY / 2 + deltaY*900
-                
+                var newX = self.backPreview.bounds.maxX / 2 + deltaX * self.backPreview.frame.size.width * CGFloat(Constant.irisKoef)
+                var newY = self.backPreview.bounds.maxY / 2 + deltaY * self.backPreview.frame.size.height * CGFloat(Constant.irisKoef)
                 if newX < self.backPreview.bounds.minX + Constant.dotRadius / 2 {
                     newX = self.backPreview.bounds.minX + Constant.dotRadius / 2
                 } else if newX > self.backPreview.bounds.maxX - Constant.dotRadius / 2 {
@@ -612,8 +620,13 @@ extension ViewController {
                 } else if newY > self.backPreview.bounds.maxY - Constant.dotRadius / 2 {
                     newY = self.backPreview.bounds.maxY - Constant.dotRadius / 2
                 }
-                self.moveToNewPoint(newCenter: CGPoint(x: newX, y: newY), duration: 0.4)
                 self.findNeedsView(point: self.circleView?.center ?? CGPoint.zero)
+                let xPrev = point.x - self.lastPosition.x
+                let yPrev = point.y - self.lastPosition.y
+                if (xPrev > 0.05 || xPrev < -0.05 || yPrev > 0.05 || yPrev < -0.05) {
+                    self.moveToNewPoint(newCenter: CGPoint(x: newX, y: newY), duration: 0.4)
+                    self.lastPosition = point
+                }
             }
         } else {
             lastPosition = point
