@@ -12,11 +12,20 @@ import MLKit
 class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDelegate, AVCaptureAudioDataOutputSampleBufferDelegate{
     
     private enum Constant {
+        static let sessionQuequeLabel = "lulu video session queue"
+        static let sessionOutputQueueLabel = "lulu video session data output queue"
+        
         static let labelConfidenceThreshold = 0.75
-        static let smallDotRadius: CGFloat = 4.0
+        static let dotRadius: CGFloat = 20.0
         static let lineWidth: CGFloat = 3.0
         static let originalScale: CGFloat = 1.0
         static let padding: CGFloat = 10.0
+        static let circleRadius = 10.0
+        static let viewsXCount = 4
+        static let viewsYCount = 5
+        static let viewBorderWidth = 1.0
+        static let viewSelectedBorderWidth = 2.0
+        static let choosenCountFrames = 30
     }
     
     var dualVideoSession = AVCaptureMultiCamSession()
@@ -31,33 +40,109 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     var frontVideoDataOutput = AVCaptureVideoDataOutput()
     var frontViewLayer:AVCaptureVideoPreviewLayer!
     
-    let dualVideoSessionQueue = DispatchQueue(label: "dual video session queue")
-    let dualVideoSessionOutputQueue = DispatchQueue(label: "dual video session data output queue")
+    let dualVideoSessionQueue = DispatchQueue(label: Constant.sessionQuequeLabel)
+    let dualVideoSessionOutputQueue = DispatchQueue(label: Constant.sessionOutputQueueLabel)
     
     @IBOutlet weak var faceDetectedLabel: UILabel!
+    @IBOutlet weak var startCalibrationButton: UIButton!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    private var lastFrame: CMSampleBuffer?
     private var circleView: UIView?
     private var lastPoint: CGPoint?
+    
+    private var isFaceDetected = false
+    private var isCalibrated = false
+    private var lastPosition = CGPoint.zero
+    private var calibrationPosition = CGPoint.zero
+    
+    let irisTracker = MPPIrisTracker()!
+    
+    var recViews = [UIView]()
+    var selectedViewId = 0
+    var countFramesInView = 0
+    var isFirstTime = true
+    
+    var segmentIndex = 0
     
     //MARK:- View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        setUp()
-        
-        circleView = UIView(frame: CGRect(x: view.center.x - 10, y: 250, width: 20, height: 20))
-        circleView?.backgroundColor = UIColor.red
-        circleView?.layer.cornerRadius = 10.0
-        circleView?.clipsToBounds = true
-        view.addSubview(circleView!)
+        setupMain()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if isFirstTime {
+            backPreview.layoutIfNeeded()
+            setupView()
+            setupDot()
+            isFirstTime = false
+        }
+    }
+    
+    func setupDot() {
+        circleView = UIView(frame: CGRect(x: backPreview.bounds.maxX / 2 - Constant.dotRadius/2, y: backPreview.bounds.maxY / 2 - Constant.dotRadius/2, width: Constant.dotRadius, height: Constant.dotRadius))
+        circleView?.backgroundColor = UIColor.red
+        circleView?.layer.cornerRadius = Constant.circleRadius
+        circleView?.clipsToBounds = true
+        backPreview.addSubview(circleView!)
+        circleView?.isHidden = true
+    }
+    
+    func setupView() {
+        backPreview.layer.borderColor = UIColor.green.cgColor
+        backPreview.layer.borderWidth = 3.0
+        let recWidth = backPreview.frame.width / CGFloat(Constant.viewsXCount)
+        let recHeight = backPreview.frame.height / CGFloat(Constant.viewsYCount)
+ 
+        var currentX = backPreview.frame.minX
+        var currentY = backPreview.frame.minY
+        var viewId = 0
+        for _ in 1...Constant.viewsXCount {
+            currentY = 0
+            for _ in 1...Constant.viewsYCount  {
+                viewId = viewId + 1
+                let recView = UIView(frame: CGRect(x: currentX, y: currentY, width: recWidth, height: recHeight))
+                recView.layer.borderColor = UIColor.black.cgColor
+                recView.layer.borderWidth = Constant.viewBorderWidth
+                recView.tag = viewId
+                backPreview.addSubview(recView)
+                recViews.append(recView)
+                currentY = currentY + recHeight
+            }
+            currentX = currentX + recWidth
+        }
+    }
+    
+    func findNeedsView(point: CGPoint) {
+        for recView in recViews {
+            if point.x > recView.frame.minX &&
+                point.x < recView.frame.maxX &&
+                point.y > recView.frame.minY &&
+                point.y < recView.frame.maxY {
+                if selectedViewId == recView.tag {
+                    if countFramesInView > Constant.choosenCountFrames {
+                        recView.layer.borderColor = UIColor.red.cgColor
+                        recView.layer.borderWidth = Constant.viewSelectedBorderWidth
+                    }
+                    countFramesInView = countFramesInView + 1
+                } else {
+                    selectedViewId = recView.tag
+                    countFramesInView = 0
+                }
+            } else {
+                recView.layer.borderColor = UIColor.black.cgColor
+                recView.layer.borderWidth = Constant.viewBorderWidth
+            }
+        }
+    }
     
     //MARK:- User Permission for Dual Video Session
     //ask user permissin for recording video from device
@@ -99,8 +184,15 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         }
     }
     
-    //MARK:- Setup Dual Video Session
-    func setUp(){
+    @IBAction func indexChanged(_ sender: Any) {
+        segmentIndex = segmentedControl.selectedSegmentIndex
+        isFaceDetected = false
+        isCalibrated = false
+        circleView?.isHidden = true
+    }
+    
+    //MARK:- Setup main functions
+    func setupMain(){
         
         // Set up the back and front video preview views.
         backPreview.videoPreviewLayer.setSessionWithNoConnection(dualVideoSession)
@@ -114,8 +206,11 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         UIApplication.shared.isIdleTimerDisabled = true
         
         dualVideoPermisson()
+        
+        irisTracker.startGraph()
+        irisTracker.delegate = self
+        
     }
-    
     
     func configureDualVideo(){
         addNotifer()
@@ -283,7 +378,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         dualVideoSession.addConnection(frontOutputConnection)
         //frontOutputConnection.videoOrientation = .portrait
         frontOutputConnection.automaticallyAdjustsVideoMirroring = false
-        frontOutputConnection.isVideoMirrored = true
+        //frontOutputConnection.isVideoMirrored = true
         
         // connect front input to front layer
         guard let frontLayer = frontViewLayer else {
@@ -296,7 +391,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         }
         dualVideoSession.addConnection(frontLayerConnection)
         frontLayerConnection.automaticallyAdjustsVideoMirroring = false
-        frontLayerConnection.isVideoMirrored = true
+        //frontLayerConnection.isVideoMirrored = true
         
         return true
     }
@@ -343,6 +438,45 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         }
     }
     
+    @IBAction func startCalibrationPressed(sender: UIButton) {
+        faceDetectedLabel.text = "Calibration..."
+        isCalibrated = false
+        startCalibrationButton.isEnabled = false
+        startCalibrationButton.alpha = 0.4
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.startCalibrationButton.isEnabled = true
+            self.startCalibrationButton.alpha = 1.0
+            self.calibrationPosition = self.lastPosition
+            self.isCalibrated = true
+            self.faceDetectedLabel.text = "Calibrated"
+            self.circleView?.center = CGPoint(x: self.backPreview.bounds.maxX / 2, y: self.backPreview.bounds.maxY / 2)
+            self.circleView?.isHidden = false
+        }
+    }
+    
+    private func setFaceNotDetected() {
+        isFaceDetected = false
+        isCalibrated = false
+        faceDetectedLabel.text = "Face not detected"
+        faceDetectedLabel.textColor = .red
+        circleView?.isHidden = true
+    }
+    
+    private func setFaceDetected() {
+        isFaceDetected = true
+        faceDetectedLabel.text = "Face detected"
+        faceDetectedLabel.isHidden = false
+        faceDetectedLabel.textColor = .black
+        startCalibrationButton.isEnabled = true
+        startCalibrationButton.alpha = 1.0
+    }
+    
+    private func moveToNewPoint(newCenter: CGPoint, duration: TimeInterval) {
+        UIView.animate(withDuration: duration) {
+            self.circleView?.center = newCenter
+        }
+    }
+    
     //MARK:- AVCaptureOutput Delegate
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection){
         
@@ -352,23 +486,29 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             return
         }
         
-        lastFrame = sampleBuffer
-        let visionImage = VisionImage(buffer: sampleBuffer)
-        let orientation = UIUtilities.imageOrientation(
-            fromDevicePosition: .front
-        )
-        visionImage.orientation = orientation
-        
-        guard let inputImage = MLImage(sampleBuffer: sampleBuffer) else {
-            print("Failed to create MLImage from sample buffer.")
-            return
+        switch segmentIndex {
+        case 0:
+            let visionImage = VisionImage(buffer: sampleBuffer)
+            let orientation = UIUtilities.imageOrientation(
+                fromDevicePosition: .front
+            )
+            visionImage.orientation = orientation
+            
+            let imageWidth = CGFloat(CVPixelBufferGetWidth(imageBuffer))
+            let imageHeight = CGFloat(CVPixelBufferGetHeight(imageBuffer))
+            
+            detectFacesOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
+        case 1:
+            
+            autoreleasepool {
+                guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
+                let timestamp = CMSampleBufferGetOutputPresentationTimeStamp(sampleBuffer)
+                irisTracker.processVideoFrame(imageBuffer, timestamp: timestamp)
+            }
+
+        default:
+            break
         }
-        inputImage.orientation = orientation
-        
-        let imageWidth = CGFloat(CVPixelBufferGetWidth(imageBuffer))
-        let imageHeight = CGFloat(CVPixelBufferGetHeight(imageBuffer))
-        
-        detectFacesOnDevice(in: visionImage, width: imageWidth, height: imageHeight)
     }
 }
 
@@ -378,10 +518,9 @@ extension ViewController {
     // MARK: - Vision On-Device Detection
     private func detectFacesOnDevice(in image: VisionImage, width: CGFloat, height: CGFloat) {
         // When performing latency tests to determine ideal detection settings, run the app in 'release'
-        //self.detectLabel.isHidden = true
         // mode to get accurate performance metrics.
         let options = FaceDetectorOptions()
-        options.landmarkMode = .none
+        options.landmarkMode = .all
         options.contourMode = .all
         options.classificationMode = .none
         options.performanceMode = .fast
@@ -392,14 +531,14 @@ extension ViewController {
         } catch let error {
             print("Failed to detect faces with error: \(error.localizedDescription).")
             DispatchQueue.main.async {
-                self.faceDetectedLabel.isHidden = true
+                self.setFaceNotDetected()
             }
             return
         }
         guard !faces.isEmpty else {
             print("On-Device face detector returned no results.")
             DispatchQueue.main.async {
-                self.faceDetectedLabel.isHidden = true
+                self.setFaceNotDetected()
             }
             return
         }
@@ -410,8 +549,10 @@ extension ViewController {
                 return
             }
             
-            DispatchQueue.main.async {
-                strongSelf.faceDetectedLabel.isHidden = false
+            if !self.isFaceDetected {
+                DispatchQueue.main.async {
+                    self.setFaceDetected()
+                }
             }
             
             guard let face = faces.first else {
@@ -423,26 +564,60 @@ extension ViewController {
     }
     
     private func setRectForCircle(for face: Face, width: CGFloat, height: CGFloat) {
-        var leftPoint = CGPoint()
-        var rightPoint = CGPoint()
-        
-        if let leftEyeContour = face.contour(ofType: .leftEye) {
-            for point in leftEyeContour.points {
-                leftPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
-                //print("left - \(cgPoint)")
+        // Nose
+        if let noseBridgeContour = face.contour(ofType: .noseBridge),
+           let lastPoint = noseBridgeContour.points.last {
+            let cgPoint = normalizedPoint(fromVisionPoint: lastPoint, width: width, height: height)
+            if isFaceDetected && isCalibrated {
+                let deltaX = cgPoint.x - calibrationPosition.x
+                let deltaY = cgPoint.y - calibrationPosition.y
+                var newX = self.backPreview.bounds.maxX / 2 + deltaX*1.5
+                var newY = self.backPreview.bounds.maxY / 2 + deltaY*3.5
+                if newX < backPreview.bounds.minX + Constant.dotRadius / 2 {
+                    newX = backPreview.bounds.minX + Constant.dotRadius / 2
+                } else if newX > backPreview.bounds.maxX - Constant.dotRadius / 2 {
+                    newX = backPreview.bounds.maxX - Constant.dotRadius / 2
+                }
+                
+                if newY < backPreview.bounds.minY + Constant.dotRadius / 2 {
+                    newY = backPreview.bounds.minY + Constant.dotRadius / 2
+                } else if newY > backPreview.bounds.maxY - Constant.dotRadius / 2 {
+                    newY = backPreview.bounds.maxY - Constant.dotRadius / 2
+                }
+                self.moveToNewPoint(newCenter: CGPoint(x: newX, y: newY), duration: 0.1)
+                self.findNeedsView(point: self.circleView?.center ?? CGPoint.zero)
+            } else {
+                lastPosition = cgPoint
             }
         }
-        if let rightEyeContour = face.contour(ofType: .rightEye) {
-            for point in rightEyeContour.points {
-                rightPoint = normalizedPoint(fromVisionPoint: point, width: width, height: height)
-                //print("right - \(cgPoint)")
+    }
+    
+    private func setRectForCircle(point: CGPoint) {
+        // Eyes
+        if isFaceDetected && isCalibrated {
+            let deltaX = point.x - calibrationPosition.x
+            let deltaY = point.y - calibrationPosition.y
+            DispatchQueue.main.async {
+                var newX = self.backPreview.bounds.maxX / 2 + deltaX*600
+                var newY = self.backPreview.bounds.maxY / 2 + deltaY*900
+                
+                if newX < self.backPreview.bounds.minX + Constant.dotRadius / 2 {
+                    newX = self.backPreview.bounds.minX + Constant.dotRadius / 2
+                } else if newX > self.backPreview.bounds.maxX - Constant.dotRadius / 2 {
+                    newX = self.backPreview.bounds.maxX - Constant.dotRadius / 2
+                }
+                
+                if newY < self.backPreview.bounds.minY + Constant.dotRadius / 2 {
+                    newY = self.backPreview.bounds.minY + Constant.dotRadius / 2
+                } else if newY > self.backPreview.bounds.maxY - Constant.dotRadius / 2 {
+                    newY = self.backPreview.bounds.maxY - Constant.dotRadius / 2
+                }
+                self.moveToNewPoint(newCenter: CGPoint(x: newX, y: newY), duration: 0.4)
+                self.findNeedsView(point: self.circleView?.center ?? CGPoint.zero)
             }
+        } else {
+            lastPosition = point
         }
-        let centerY = (leftPoint.y + rightPoint.y)/2
-        let delta = view.center.y - centerY
-        print(delta)
-        let y = view.center.y + delta*2 - 100
-        circleView?.center = CGPoint(x: (leftPoint.x + rightPoint.x)/2, y: y)
     }
     
     private func convertedPoints(
@@ -468,6 +643,23 @@ extension ViewController {
         var normalizedPoint = CGPoint(x: cgPoint.x / width, y: cgPoint.y / height)
         normalizedPoint = frontViewLayer.layerPointConverted(fromCaptureDevicePoint: normalizedPoint)
         return normalizedPoint
+    }
+}
+
+extension ViewController: MPPIrisTrackerDelegate {
+    func irisTracker(_ irisTracker: MPPIrisTracker, didOutputTransform transform: simd_float4x4) {
+                
+        if !self.isFaceDetected {
+            DispatchQueue.main.async {
+                self.setFaceDetected()
+            }
+        }
+        
+        setRectForCircle(point: CGPoint(x: Double(-transform.columns.3.y), y: Double(transform.columns.3.x)))
+    }
+    
+    func irisTracker(_ irisTracker: MPPIrisTracker, didOutputPixelBuffer pixelBuffer: CVPixelBuffer) {
+        
     }
 }
 

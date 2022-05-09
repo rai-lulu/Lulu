@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,9 @@
 		0D79C9BF2811453A0047E527 /* ViewPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C9BE2811453A0047E527 /* ViewPreview.swift */; };
 		0D79C9ED28114C8A0047E527 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C9EB28114C8A0047E527 /* UIUtilities.swift */; };
 		0D79C9EE28114C8A0047E527 /* MLKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D79C9EC28114C8A0047E527 /* MLKitExtensions.swift */; };
+		6FA745F12828EF530040403A /* MPPIrisTracking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA745F02828EF530040403A /* MPPIrisTracking.framework */; platformFilter = ios; };
+		6FA745F72828FA400040403A /* MPPIrisTracking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA745F02828EF530040403A /* MPPIrisTracking.framework */; };
+		6FA745F82828FA400040403A /* MPPIrisTracking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA745F02828EF530040403A /* MPPIrisTracking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B956055431F00EA8C764BCB /* Pods_lulu_iosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4252353822CE34688680BD42 /* Pods_lulu_iosTests.framework */; };
 		D2C6C71D72B8262DE5624A2B /* Pods_lulu_ios_lulu_iosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 007264F5ADE8B424D392CBD9 /* Pods_lulu_ios_lulu_iosUITests.framework */; };
 		D6278822D7934E5EF29D4773 /* Pods_lulu_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A178BF734E98F5042F1C44D /* Pods_lulu_ios.framework */; };
@@ -40,6 +43,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6FA745F92828FA400040403A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6FA745F82828FA400040403A /* MPPIrisTracking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		007264F5ADE8B424D392CBD9 /* Pods_lulu_ios_lulu_iosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lulu_ios_lulu_iosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D79C988281143510047E527 /* lulu-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lulu-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,6 +77,8 @@
 		0D79C9EB28114C8A0047E527 /* UIUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
 		0D79C9EC28114C8A0047E527 /* MLKitExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MLKitExtensions.swift; sourceTree = "<group>"; };
 		4252353822CE34688680BD42 /* Pods_lulu_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lulu_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FA745F02828EF530040403A /* MPPIrisTracking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MPPIrisTracking.framework; sourceTree = "<group>"; };
+		6FA745F62828F1210040403A /* Lulu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lulu-Bridging-Header.h"; sourceTree = "<group>"; };
 		71EC21B074F39F1EFE3FABCF /* Pods-lulu-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lulu-ios.debug.xcconfig"; path = "Target Support Files/Pods-lulu-ios/Pods-lulu-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		7644886F0432B0C37E9266CE /* Pods-lulu-ios-lulu-iosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-lulu-ios-lulu-iosUITests.debug.xcconfig"; path = "Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8A178BF734E98F5042F1C44D /* Pods_lulu_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_lulu_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FA745F72828FA400040403A /* MPPIrisTracking.framework in Frameworks */,
 				D6278822D7934E5EF29D4773 /* Pods_lulu_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -82,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FA745F12828EF530040403A /* MPPIrisTracking.framework in Frameworks */,
 				9B956055431F00EA8C764BCB /* Pods_lulu_iosTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +153,8 @@
 				0D79C9962811435E0047E527 /* LaunchScreen.storyboard */,
 				0D79C9992811435E0047E527 /* Info.plist */,
 				0D79C9BE2811453A0047E527 /* ViewPreview.swift */,
+				6F7B93C5281FD5D800B0C7B4 /* Resources */,
+				6FA745F62828F1210040403A /* Lulu-Bridging-Header.h */,
 			);
 			path = "lulu-ios";
 			sourceTree = "<group>";
@@ -154,6 +177,13 @@
 			path = "lulu-iosUITests";
 			sourceTree = "<group>";
 		};
+		6F7B93C5281FD5D800B0C7B4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		AFF97287A7AABCE188728958 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +200,7 @@
 		E09BF6A2E4AC6961086D2A12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FA745F02828EF530040403A /* MPPIrisTracking.framework */,
 				8A178BF734E98F5042F1C44D /* Pods_lulu_ios.framework */,
 				007264F5ADE8B424D392CBD9 /* Pods_lulu_ios_lulu_iosUITests.framework */,
 				4252353822CE34688680BD42 /* Pods_lulu_iosTests.framework */,
@@ -189,7 +220,8 @@
 				0D79C985281143510047E527 /* Frameworks */,
 				0D79C986281143510047E527 /* Resources */,
 				BCF5546A441CBB15432E75F7 /* [CP] Embed Pods Frameworks */,
-				1F0F876859E69F1F50E08F86 /* [CP] Copy Pods Resources */,
+				69BDE6F94935310663FBCE44 /* [CP] Copy Pods Resources */,
+				6FA745F92828FA400040403A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,7 +260,7 @@
 				0D79C9A62811435F0047E527 /* Frameworks */,
 				0D79C9A72811435F0047E527 /* Resources */,
 				143EDB78B58F49941CEFF740 /* [CP] Embed Pods Frameworks */,
-				B73B16D42582CEE8748E09CF /* [CP] Copy Pods Resources */,
+				41193E6F76C625F2765D0741 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -327,23 +359,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1F0F876859E69F1F50E08F86 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2F0604157BBC65D0FFF041B0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,6 +379,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41193E6F76C625F2765D0741 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4FAEABEF7AAB2E81FE9687A9 /* [CP] Check Pods Manifest.lock */ = {
@@ -388,21 +420,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B73B16D42582CEE8748E09CF /* [CP] Copy Pods Resources */ = {
+		69BDE6F94935310663FBCE44 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios-lulu-iosUITests/Pods-lulu-ios-lulu-iosUITests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-lulu-ios/Pods-lulu-ios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BCF5546A441CBB15432E75F7 /* [CP] Embed Pods Frameworks */ = {
@@ -638,6 +670,10 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5FBLV96LYJ;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "lulu-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -647,6 +683,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.noling.luluapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "lulu-ios/Lulu-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -663,6 +700,10 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5FBLV96LYJ;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "lulu-ios/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -672,6 +713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.noling.luluapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "lulu-ios/Lulu-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -684,6 +726,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "lulu-iosTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -706,6 +752,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "lulu-iosTests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -17,44 +17,72 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Lj-85-Dh2">
+                                <rect key="frame" x="284.5" y="44" width="129.5" height="40"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Start Calibration"/>
+                                <connections>
+                                    <action selector="startCalibrationPressedWithSender:" destination="v4C-Wa-HNi" eventType="touchUpInside" id="Kbe-3K-NiF"/>
+                                </connections>
+                            </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Face detected" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u0c-IK-9SA">
-                                <rect key="frame" x="152.5" y="44" width="109" height="21"/>
+                                <rect key="frame" x="152.5" y="44" width="109" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Kkq-pi-g6p"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZq-Cv-Ueo" customClass="ViewPreview" customModule="lulu_ios" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="65" width="414" height="831"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="738"/>
                                 <subviews>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OK7-cp-HGP" customClass="ViewPreview" customModule="lulu_ios" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="831"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="738"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="OK7-cp-HGP" secondAttribute="trailing" id="God-4a-Byc"/>
-                                    <constraint firstItem="OK7-cp-HGP" firstAttribute="leading" secondItem="yZq-Cv-Ueo" secondAttribute="leading" id="ILW-F2-Lkg"/>
-                                    <constraint firstItem="OK7-cp-HGP" firstAttribute="top" secondItem="yZq-Cv-Ueo" secondAttribute="top" id="bJF-97-rZ2"/>
-                                    <constraint firstAttribute="bottom" secondItem="OK7-cp-HGP" secondAttribute="bottom" id="y07-db-WPc"/>
+                                    <constraint firstAttribute="trailing" secondItem="OK7-cp-HGP" secondAttribute="trailing" id="6Hk-GP-BNs"/>
+                                    <constraint firstAttribute="bottom" secondItem="OK7-cp-HGP" secondAttribute="bottom" id="HS8-1v-KK0"/>
+                                    <constraint firstItem="OK7-cp-HGP" firstAttribute="top" secondItem="yZq-Cv-Ueo" secondAttribute="top" id="cZq-rU-abc"/>
+                                    <constraint firstItem="OK7-cp-HGP" firstAttribute="leading" secondItem="yZq-Cv-Ueo" secondAttribute="leading" id="gJi-Ld-yL1"/>
                                 </constraints>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KSA-Hq-Bn7">
+                                <rect key="frame" x="10" y="48.5" width="101" height="32"/>
+                                <segments>
+                                    <segment title="Nose"/>
+                                    <segment title="Eyes"/>
+                                </segments>
+                                <connections>
+                                    <action selector="indexChanged:" destination="v4C-Wa-HNi" eventType="valueChanged" id="ZxB-Vf-8sX"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="DMJ-AW-IDb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yZq-Cv-Ueo" firstAttribute="top" secondItem="u0c-IK-9SA" secondAttribute="bottom" id="7DY-zv-ZqP"/>
+                            <constraint firstItem="KSA-Hq-Bn7" firstAttribute="centerY" secondItem="u0c-IK-9SA" secondAttribute="centerY" id="EWN-M5-oim"/>
+                            <constraint firstItem="5Lj-85-Dh2" firstAttribute="centerY" secondItem="u0c-IK-9SA" secondAttribute="centerY" id="MZE-dr-yYG"/>
                             <constraint firstItem="u0c-IK-9SA" firstAttribute="centerX" secondItem="DMJ-AW-IDb" secondAttribute="centerX" id="RIk-Fw-fsm"/>
                             <constraint firstItem="u0c-IK-9SA" firstAttribute="top" secondItem="DMJ-AW-IDb" secondAttribute="top" id="WI3-Jk-P3D"/>
                             <constraint firstItem="yZq-Cv-Ueo" firstAttribute="leading" secondItem="DMJ-AW-IDb" secondAttribute="leading" id="bbW-Sv-iad"/>
+                            <constraint firstItem="yZq-Cv-Ueo" firstAttribute="centerY" secondItem="DMJ-AW-IDb" secondAttribute="centerY" id="c6E-Po-Ej9"/>
+                            <constraint firstItem="5Lj-85-Dh2" firstAttribute="trailing" secondItem="DMJ-AW-IDb" secondAttribute="trailing" id="dKO-wd-tLb"/>
                             <constraint firstItem="yZq-Cv-Ueo" firstAttribute="trailing" secondItem="DMJ-AW-IDb" secondAttribute="trailing" id="f0A-tp-2he"/>
-                            <constraint firstAttribute="bottom" secondItem="yZq-Cv-Ueo" secondAttribute="bottom" id="hmH-T9-h0M"/>
+                            <constraint firstItem="5Lj-85-Dh2" firstAttribute="top" secondItem="DMJ-AW-IDb" secondAttribute="top" id="u6Q-30-i3M"/>
+                            <constraint firstItem="KSA-Hq-Bn7" firstAttribute="leading" secondItem="DMJ-AW-IDb" secondAttribute="leading" constant="10" id="yAw-H6-QbD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backPreview" destination="yZq-Cv-Ueo" id="xiG-gU-r5C"/>
                         <outlet property="faceDetectedLabel" destination="u0c-IK-9SA" id="y9s-LM-x56"/>
                         <outlet property="frontPreview" destination="OK7-cp-HGP" id="K1U-WU-EeQ"/>
+                        <outlet property="segmentedControl" destination="KSA-Hq-Bn7" id="KVM-x0-Z70"/>
+                        <outlet property="startCalibrationButton" destination="5Lj-85-Dh2" id="GIw-ej-GjL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jSD-r1-UvF" sceneMemberID="firstResponder"/>

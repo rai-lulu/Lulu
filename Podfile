@@ -6,7 +6,8 @@ target 'lulu-ios' do
   use_frameworks!
 
   # Pods for lulu-ios
-  pod 'GoogleMLKit/FaceDetection'
+  pod 'GoogleMLKit/FaceDetection', '2.6.0'
+  pod 'GoogleMLKit/ObjectDetectionCustom', '2.6.0'
 
   target 'lulu-iosTests' do
     inherit! :search_paths
