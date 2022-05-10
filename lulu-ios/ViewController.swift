@@ -29,7 +29,12 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         
         static let noseKoefX = 1.5
         static let noseKoefY = 3.5
-        static let irisKoef = 1.5
+        static let irisKoef = 1.6
+        
+        static let upLeftText = "LOOK UP LEFT"
+        static let upRightText = "LOOK UP RIGHT"
+        static let downLeftText = "LOOK DOWN LEFT"
+        static let downRightText = "LOOK DOWN RIGHT"
     }
     
     var dualVideoSession = AVCaptureMultiCamSession()
@@ -57,6 +62,14 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
     private var isFaceDetected = false
     private var isCalibrated = false
     private var lastPosition = CGPoint.zero
+    
+    private var topLeftPosition = CGPoint.zero
+    private var topRightPosition = CGPoint.zero
+    private var bottomLeftPosition = CGPoint.zero
+    private var bottomRightPosition = CGPoint.zero
+    private var xWidth = 0.00
+    private var yHeight = 0.00
+    
     private var calibrationPosition = CGPoint.zero
     
     let irisTracker = MPPIrisTracker()!
@@ -377,7 +390,7 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
             return false
         }
         dualVideoSession.addConnection(frontOutputConnection)
-        //frontOutputConnection.videoOrientation = .portrait
+        //frontOutputConnection.videoOrientation = .portraitUpsideDown
         frontOutputConnection.automaticallyAdjustsVideoMirroring = false
         //frontOutputConnection.isVideoMirrored = true
         
@@ -445,17 +458,57 @@ class ViewController: UIViewController,AVCaptureVideoDataOutputSampleBufferDeleg
         startCalibrationButton.isEnabled = false
         startCalibrationButton.alpha = 0.4
         lastPosition = CGPoint.zero
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-            self.startCalibrationButton.isEnabled = true
-            self.startCalibrationButton.alpha = 1.0
-            if self.lastPosition == CGPoint.zero {
-                self.faceDetectedLabel.text = "Not calibrated"
-            } else {
-                self.calibrationPosition = self.lastPosition
-                self.isCalibrated = true
-                self.faceDetectedLabel.text = "Calibrated"
-                self.circleView?.center = CGPoint(x: self.backPreview.bounds.maxX / 2, y: self.backPreview.bounds.maxY / 2)
-                self.circleView?.isHidden = false
+        //nose
+        if segmentIndex == 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                self.startCalibrationButton.isEnabled = true
+                self.startCalibrationButton.alpha = 1.0
+                if self.lastPosition == CGPoint.zero {
+                    self.faceDetectedLabel.text = "Not calibrated"
+                } else {
+                    self.calibrationPosition = self.lastPosition
+                    self.isCalibrated = true
+                    self.faceDetectedLabel.text = "Calibrated"
+                    self.circleView?.center = CGPoint(x: self.backPreview.bounds.maxX / 2, y: self.backPreview.bounds.maxY / 2)
+                    self.circleView?.isHidden = false
+                }
+            }
+        } else {
+            self.faceDetectedLabel.textColor = UIColor.red
+            self.faceDetectedLabel.text = Constant.upLeftText
+            self.recViews[0].backgroundColor = UIColor.red
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                self.topLeftPosition = self.lastPosition
+                self.lastPosition = CGPoint.zero
+                self.recViews[0].backgroundColor = UIColor.clear
+                self.faceDetectedLabel.text = Constant.upRightText
+                self.recViews[15].backgroundColor = UIColor.red
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    self.topRightPosition = self.lastPosition
+                    self.lastPosition = CGPoint.zero
+                    self.faceDetectedLabel.text = Constant.downLeftText
+                    self.recViews[15].backgroundColor = UIColor.clear
+                    self.recViews[4].backgroundColor = UIColor.red
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        self.bottomLeftPosition = self.lastPosition
+                        self.lastPosition = CGPoint.zero
+                        self.faceDetectedLabel.text = Constant.downRightText
+                        self.recViews[4].backgroundColor = UIColor.clear
+                        self.recViews[19].backgroundColor = UIColor.red
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                            self.bottomRightPosition = self.lastPosition
+                            self.faceDetectedLabel.textColor = UIColor.black
+                            self.recViews[19].backgroundColor = UIColor.clear
+                            self.faceDetectedLabel.text = "Calibrated"
+                            self.circleView?.center = CGPoint(x: self.backPreview.bounds.maxX / 2, y: self.backPreview.bounds.maxY / 2)
+                            self.circleView?.isHidden = false
+                            self.startCalibrationButton.isEnabled = true
+                            self.startCalibrationButton.alpha = 1.0
+                            self.isCalibrated = true
+                            print(self.topLeftPosition, self.topRightPosition, self.bottomLeftPosition, self.bottomRightPosition)
+                        }
+                    }
+                }
             }
         }
     }
@@ -602,31 +655,42 @@ extension ViewController {
     private func setRectForCircle(point: CGPoint) {
         // Eyes
         if isFaceDetected && isCalibrated {
-            let deltaX = point.x - calibrationPosition.x
-            let deltaY = point.y - calibrationPosition.y
-        
             //print(deltaX, deltaY )
             DispatchQueue.main.async {
-                var newX = self.backPreview.bounds.maxX / 2 + deltaX * self.backPreview.frame.size.width * CGFloat(Constant.irisKoef)
-                var newY = self.backPreview.bounds.maxY / 2 + deltaY * self.backPreview.frame.size.height * CGFloat(Constant.irisKoef)
-                if newX < self.backPreview.bounds.minX + Constant.dotRadius / 2 {
-                    newX = self.backPreview.bounds.minX + Constant.dotRadius / 2
-                } else if newX > self.backPreview.bounds.maxX - Constant.dotRadius / 2 {
-                    newX = self.backPreview.bounds.maxX - Constant.dotRadius / 2
+                //x
+                var newX = 0.00
+                if point.x < self.topLeftPosition.x  {
+                    newX = self.backPreview.frame.minX + Constant.dotRadius / 2
+                } else if point.x > self.topRightPosition.x {
+                    newX = self.backPreview.frame.maxX - Constant.dotRadius / 2
+                } else {
+                    self.xWidth = self.topRightPosition.x - self.topLeftPosition.x
+                    if self.xWidth < 0 {
+                        self.isCalibrated = false
+                        self.faceDetectedLabel.text = "Calibration error"
+                        self.faceDetectedLabel.textColor = UIColor.red
+                    } else {
+                        newX = (point.x - self.topLeftPosition.x) * self.backPreview.frame.width / self.xWidth
+                    }
                 }
-                
-                if newY < self.backPreview.bounds.minY + Constant.dotRadius / 2 {
+                //y
+                var newY = 0.00
+                if point.y < self.topRightPosition.y  {
                     newY = self.backPreview.bounds.minY + Constant.dotRadius / 2
-                } else if newY > self.backPreview.bounds.maxY - Constant.dotRadius / 2 {
-                    newY = self.backPreview.bounds.maxY - Constant.dotRadius / 2
+                } else if point.y > self.bottomLeftPosition.y {
+                    newY = self.backPreview.bounds.height - Constant.dotRadius / 2
+                } else {
+                    self.yHeight = self.bottomRightPosition.y - self.topRightPosition.y
+                    if self.yHeight < 0 {
+                        self.isCalibrated = false
+                        self.faceDetectedLabel.text = "Calibration error"
+                        self.faceDetectedLabel.textColor = UIColor.red
+                    } else {
+                        newY = (point.y - self.topRightPosition.y) * self.backPreview.bounds.height / 0.4//self.yHeight
+                    }
                 }
                 self.findNeedsView(point: self.circleView?.center ?? CGPoint.zero)
-                let xPrev = point.x - self.lastPosition.x
-                let yPrev = point.y - self.lastPosition.y
-                if (xPrev > 0.05 || xPrev < -0.05 || yPrev > 0.05 || yPrev < -0.05) {
-                    self.moveToNewPoint(newCenter: CGPoint(x: newX, y: newY), duration: 0.4)
-                    self.lastPosition = point
-                }
+                self.moveToNewPoint(newCenter: CGPoint(x: newX, y: newY), duration: 0.8)
             }
         } else {
             lastPosition = point
